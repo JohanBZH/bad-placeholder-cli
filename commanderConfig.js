@@ -1,4 +1,3 @@
-var _fs = require("node:fs");
 var cmd = require("commander");
 var img = require("./Image");
 // The version should be the same as the package.json version, keep it in sync
