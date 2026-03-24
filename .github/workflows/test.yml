@@ -21,7 +21,7 @@ jobs:
         run: npm ci
 
       - name: Check format and lint
-        run: npx @biomejs/biome check
+        run: npx @biomejs/biome check --max-diagnostics=none
 
       - name: Run tests
         run: npm test

@@ -1,24 +1,17 @@
-var chai = require("chai");
+var _chai = require("chai");
 var expect = require("chai").expect;
 var execa = require("execa");
 var helpers = require("./helpers");
 
 describe("bad-placeholder -n 3", () => {
-	
+	var _result;
 
 	before((done) => {
-		helpers.deletePlaceholders().then((response) => {
-			done();
-		});
-	});
-
-	var result;
-
-	before((done) => {
+		helpers.deletePlaceholders().then((_response) => {});
 		execa
 			.shell("node ./index.js -n 3")
 			.then((response) => {
-				result = response.stdout;
+				_result = response.stdout;
 				done();
 			})
 			.catch((error) => {
@@ -40,21 +33,14 @@ describe("bad-placeholder -n 3", () => {
 });
 
 describe("bad-placeholder -s 100x100", () => {
-	
+	var _result;
 
 	before((done) => {
-		helpers.deletePlaceholders().then((response) => {
-			done();
-		});
-	});
-
-	var result;
-
-	before((done) => {
+		helpers.deletePlaceholders().then((_response) => {});
 		execa
 			.shell("node ./index.js -s 100x100")
 			.then((response) => {
-				result = response.stdout;
+				_result = response.stdout;
 				done();
 			})
 			.catch((error) => {
@@ -76,22 +62,15 @@ describe("bad-placeholder -s 100x100", () => {
 for (const provider of ["DummyImage", "LoremPicsum", "PlaceBear"]) {
 	("use strict");
 
-	describe("bad-placeholder -p " + provider, () => {
-		
+	describe(`bad-placeholder -p ${provider}`, () => {
+		var _result;
 
 		before((done) => {
-			helpers.deletePlaceholders().then((response) => {
-				done();
-			});
-		});
-
-		var result;
-
-		before((done) => {
+			helpers.deletePlaceholders().then((_response) => {});
 			execa
-				.shell("node ./index.js -p " + provider)
+				.shell(`node ./index.js -p ${provider}`)
 				.then((response) => {
-					result = response.stdout;
+					_result = response.stdout;
 					done();
 				})
 				.catch((error) => {
@@ -100,12 +79,9 @@ for (const provider of ["DummyImage", "LoremPicsum", "PlaceBear"]) {
 				});
 		});
 
-		it(
-			"should generate one image from specified provider (" + provider + ")",
-			() => {
-				expect(helpers.getPlaceholders().length).to.be.equal(1);
-			},
-		);
+		it(`should generate one image from specified provider (${provider})`, () => {
+			expect(helpers.getPlaceholders().length).to.be.equal(1);
+		});
 
 		it("should have default dimensions", () => {
 			var dimensions = helpers.getDimensions(helpers.getPlaceholders()[0]);
@@ -113,7 +89,7 @@ for (const provider of ["DummyImage", "LoremPicsum", "PlaceBear"]) {
 		});
 
 		after((done) => {
-			helpers.deletePlaceholders().then((response) => {
+			helpers.deletePlaceholders().then((_response) => {
 				done();
 			});
 		});

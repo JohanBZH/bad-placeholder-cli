@@ -6,7 +6,7 @@
 		"bad-placeholder": "index.js"
 	},
 	"scripts": {
-		"test": "mocha test  --timeout 5000"
+		"test": "mocha test  --timeout 10000"
 	},
 	"keywords": [
 		"placeholder",

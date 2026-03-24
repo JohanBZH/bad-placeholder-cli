@@ -1,4 +1,4 @@
-var fs = require("fs");
+var fs = require("node:fs");
 
 module.exports = {
 	getRootFiles: () => fs.readdirSync("./"),
@@ -10,6 +10,7 @@ module.exports = {
 			if (filename.indexOf("placeholder_") !== -1) {
 				return filename;
 			}
+			return null;
 		});
 	},
 
@@ -17,7 +18,7 @@ module.exports = {
 		var placeholders = this.getPlaceholders();
 		var count = placeholders.length;
 
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve, _reject) => {
 			if (count) {
 				placeholders.forEach((filename) => {
 					fs.unlinkSync(filename);
